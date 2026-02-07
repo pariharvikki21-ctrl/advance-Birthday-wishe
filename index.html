@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<title>Advance Birthday Wish 💫</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI', sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:radial-gradient(circle at top,#ff9a9e,#fad0c4,#fbc2eb);
+    overflow-x:hidden;
+    animation:bgPulse 10s infinite alternate;
+}
+
+@keyframes bgPulse{
+    from{filter:hue-rotate(0deg)}
+    to{filter:hue-rotate(20deg)}
+}
+
+/* sparkles */
+.sparkle{
+    position:fixed;
+    width:6px;
+    height:6px;
+    background:white;
+    border-radius:50%;
+    animation:sparkleMove 6s linear infinite;
+    opacity:.6;
+}
+
+@keyframes sparkleMove{
+    from{transform:translateY(110vh) scale(0)}
+    to{transform:translateY(-10vh) scale(1)}
+}
+
+.container{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    padding:80px 15px;
+}
+
+.card{
+    width:95%;
+    max-width:900px;
+    background:rgba(255,255,255,.18);
+    backdrop-filter:blur(18px);
+    border-radius:35px;
+    padding:50px 45px;
+    box-shadow:0 40px 90px rgba(0,0,0,.35);
+    animation:cardZoom 2s ease;
+}
+
+@keyframes cardZoom{
+    from{transform:scale(.8);opacity:0}
+    to{transform:scale(1);opacity:1}
+}
+
+h1{
+    text-align:center;
+    font-size:44px;
+    margin-bottom:35px;
+    color:#fff;
+    animation:titleGlow 3s infinite alternate;
+}
+
+@keyframes titleGlow{
+    from{text-shadow:0 0 15px #fff}
+    to{text-shadow:0 0 45px #ffeb3b}
+}
+
+/* paragraph reveal */
+p{
+    font-size:20px;
+    line-height:2;
+    color:#fff;
+    margin-bottom:26px;
+    opacity:0;
+    transform:translateY(40px);
+    transition:1s ease;
+}
+
+p.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* gift box */
+.giftBox{
+    margin:50px auto 0;
+    width:150px;
+    height:150px;
+    background:#ff4f7a;
+    border-radius:20px;
+    position:relative;
+    cursor:pointer;
+    animation:giftFloat 2s infinite;
+}
+
+@keyframes giftFloat{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-14px)}
+}
+
+.giftBox::before{
+    content:'';
+    position:absolute;
+    width:24px;
+    height:150px;
+    background:#fff;
+    left:50%;
+    transform:translateX(-50%);
+}
+
+.giftBox::after{
+    content:'';
+    position:absolute;
+    width:150px;
+    height:24px;
+    background:#fff;
+    top:50%;
+    transform:translateY(-50%);
+}
+
+.lid{
+    position:absolute;
+    width:160px;
+    height:45px;
+    background:#ff6b8b;
+    top:-35px;
+    left:-5px;
+    border-radius:20px;
+    transition:1s ease;
+}
+
+.giftBox.open .lid{
+    transform:rotate(-25deg) translate(-20px,-20px);
+}
+
+.giftMessage{
+    display:none;
+    margin-top:35px;
+    text-align:center;
+    font-size:22px;
+    color:#fff;
+    animation:fadeScale 1.5s ease forwards;
+}
+
+@keyframes fadeScale{
+    from{opacity:0;transform:scale(.7)}
+    to{opacity:1;transform:scale(1)}
+}
+</style>
+</head>
+
+<body>
+
+<!-- sparkles -->
+<script>
+for(let i=0;i<40;i++){
+    let s=document.createElement("div");
+    s.className="sparkle";
+    s.style.left=Math.random()*100+"%";
+    s.style.animationDelay=Math.random()*6+"s";
+    document.body.appendChild(s);
+}
+</script>
+
+<div class="container">
+<div class="card">
+
+<h1>🎂 Advance Happy Birthday 🎂</h1>
+
+<p>Pata hai abhi tumhara birthday aaya nahi hai,  
+lekin kuch log itne khaas hote hain  
+ki unhe wish karne ke liye date ka wait nahi kiya jaata.</p>
+
+<p>Ye wish thodi si advance hai,  
+par isme feelings bilkul pure aur sachchi hain.  
+Tumhari ek muskurahat bhi din ko behtar bana deti hai.</p>
+
+<p>Dua hai ki tumhari zindagi me  
+khushiyan kabhi kam na ho,  
+sapne bina rukawat poore ho,  
+aur har subah nayi umeed le kar aaye.</p>
+
+<p>Aane wala saal tumhare liye  
+success, sukoon aur pyaari yaadon se bhara ho,  
+jahan tension kam aur hasi zyada ho.</p>
+
+<p>Chahe hum paas ho ya door,  
+ye wish sirf message nahi  
+balki dil se nikli hui dua hai.</p>
+
+<div class="giftBox" onclick="openGift(this)">
+    <div class="lid"></div>
+</div>
+
+<div class="giftMessage" id="giftMsg">
+🎁 Tum mere liye khud ek gift ho ❤️  
+Advance me hi sahi,  
+par dil se — Happy Birthday 🫶✨
+</div>
+
+</div>
+</div>
+
+<script>
+/* scroll reveal */
+const paras=document.querySelectorAll("p");
+window.addEventListener("scroll",()=>{
+    paras.forEach(p=>{
+        let pos=p.getBoundingClientRect().top;
+        if(pos<window.innerHeight-100){
+            p.classList.add("show");
+        }
+    })
+});
+
+/* gift open */
+function openGift(el){
+    el.classList.add("open");
+    document.getElementById("giftMsg").style.display="block";
+}
+</script>
+
+</body>
+</html>
